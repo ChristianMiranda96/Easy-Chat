@@ -1,1 +1,44 @@
-<p>chat works!</p>
+<div class="flex flex-col h-screen">
+  <!-- Cabeçalho -->
+  <header class="bg-primary text-primary-foreground py-4 px-6 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <mat-icon>videocam</mat-icon>
+      <h1 class="text-xl font-bold m-0">Easy-Chat</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <button mat-icon-button>
+        <mat-icon>people</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- Corpo do Chat -->
+  <div class="flex-1 overflow-auto p-6" #messageContainer>
+    <div class="grid gap-4">
+      <div *ngFor="let msg of messages" class="flex items-start gap-4" [ngClass]="{'justify-end': msg.userId === userId}">
+        <mat-icon class="w-10 h-10">account_circle</mat-icon>
+        <div [ngClass]="{'bg-primary text-primary-foreground': msg.userId === userId, 'bg-muted': msg.userId !== userId}" class="rounded-lg p-4 max-w-[80%]">
+          <p>{{ msg.content }}</p>
+          <div class="text-xs text-muted-foreground mt-1">{{ msg.timestamp }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caixa de Entrada -->
+  <div class="bg-background border-t px-6 py-4 flex items-center gap-4">
+    <mat-form-field class="flex-1" appearance="outline">
+      <input matInput placeholder="Digite sua mensagem..." [(ngModel)]="message" />
+    </mat-form-field>
+    <button mat-icon-button>
+      <mat-icon>attach_file</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>mic</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="sendMessage()">Enviar</button>
+  </div>
+</div>

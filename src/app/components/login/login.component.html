@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="relative h-screen w-full overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-[#0077b6] to-[#d1b5b5] animate-deadpool-bg">
+    <div class="absolute inset-0 bg-[url('/assets/deadpool-dance-bye-bye-bye.gif')] bg-cover bg-center animate-deadpool-pattern"></div>
+  </div>
+  <div class="relative z-10 flex h-full items-center justify-center">
+    <div class="rounded-lg bg-white/90 p-8 shadow-lg backdrop-blur-sm">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" class="space-y-4">
+        <h1 class="text-3xl font-bold text-[#0077b6]">Bem-vindo</h1>
+      
+        <div class="space-y-2">
+          <mat-form-field class="w-full">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" placeholder="Digite seu nome" />
+            <mat-error *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched">
+              Nome é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div class="space-y-2">
+          <mat-form-field class="w-full">
+            <mat-label>Idade</mat-label>
+            <input matInput formControlName="age" type="number" placeholder="Digite sua idade" />
+            <mat-error *ngIf="loginForm.get('age')?.invalid && loginForm.get('age')?.touched">
+              <ng-container *ngIf="loginForm.get('age')?.errors?.['required']">Idade é obrigatória</ng-container>
+              <ng-container *ngIf="loginForm.get('age')?.errors?.['min']">Idade mínima é 18 anos</ng-container>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      
+        <button mat-raised-button color="primary" class="w-full" [disabled]="loginForm.invalid" [ngClass]="{'animate-pulse': loginForm.invalid}">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

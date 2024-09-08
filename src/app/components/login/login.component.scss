@@ -1,0 +1,27 @@
+.animate-deadpool-bg {
+    animation: deadpool-bg 15s infinite;
+  }
+  
+  .animate-deadpool-pattern {
+    animation: deadpool-pattern 10s infinite;
+  }
+  
+  @keyframes deadpool-bg {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 100%;
+    }
+  }
+  
+  @keyframes deadpool-pattern {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
+  
